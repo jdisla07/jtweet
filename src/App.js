@@ -1,9 +1,10 @@
 import Login from "./components/Login/Login";
 import Signup from "./components/Login/Signup";
-import {createContext, useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import {Route, Routes, useNavigate} from "react-router-dom"
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from './Firebase';
+import Home from "./pages/home/Home";
 const App = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -22,13 +23,11 @@ const App = () => {
   }, [])
 
   return (
-      <UserContext value={{user}}>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/signup" element={<Signup />}/>
-        </Routes>
-      </UserContext>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/signup" element={<Signup />}/>
+      </Routes>
   )
 };
 
